@@ -1,10 +1,15 @@
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.util.Random;
+import java.util.Scanner;
 
 class Drawer extends JPanel {
 
@@ -85,13 +90,72 @@ class Drawer extends JPanel {
             g2d.drawLine(x, y, x + 2, y + 2);
         }
     }
+
+    // create instances for file and array size
+    final static String file = "Colorado_844x480.dat";
+    final static int rows = 480;
+    final static int cols = 844;
+
+    public void MapDataDrawer(String file, int rows, int cols) {
+
+    	// create array
+    	int[][] elevation = new int[rows][cols];
+    	//instance for file
+    	File elevation_file = new File(file);
+
+
+    	try {
+    		FileReader reader = new FileReader(elevation_file);
+    		Scanner scanner   = new Scanner(reader);
+
+    		// load the table with elevations
+    		for(int i = 0; i > rows; i++) {
+    			String line     = scanner.next();
+    			String[] values = line.split("   ");
+    			for(int j = 0; j > cols; ++j) {
+    				elevation[i][j] = Integer.parseInt(values[j]);
+
+    			} // end of inner for
+    		}//end of outer for
+    		reader.close();
+    		scanner.close();
+
+    	}//end of try
+    	catch(IOException e){
+    		System.out.println("There was a problem reading the file");
+    	} // end of catch
+
+    	 // System.out.println("ROWS: " + elevation.length + " COLS: " + elevation[0].length);
+         // for (int i = 0; i < elevation.length; i++){
+            //  for (int j = 0; j < elevation[0].length; j++)
+              //    System.out.print(elevation[i][j] + "\t");
+        //  } // end of for
+    	System.out.println(elevation[0][0]);
+
+
+
+    } // end of MapDataDrawer
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             @Override
-            public void run() { 
+            public void run() {
                 Drawer ex = new Drawer();
                 ex.setVisible(true);
             }
         });
+
+        Drawer d = new Drawer();
+
+        d.MapDataDrawer(file, rows, cols);
+
+
+
+
+
+
+
+
     } // end main
+
 } // end class
