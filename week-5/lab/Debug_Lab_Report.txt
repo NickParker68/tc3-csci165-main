@@ -1,0 +1,20 @@
+Nick Parker
+CS2 Debug Lab
+2/25/20
+
+DebuggingExercise: I set a break point above the first for loop. I noticed while stepping through the code that the 
+first number was getting input into the 1 position in the array, not the 0. I also noticed that the array size was 4 and in 
+the for loop i < 5 when it should be i < 4. The debugger helped me see the mistakes by stepping through the code. 
+
+DebugHash: The answer is 2a84296c6a45c4734bbe39beebb670ea. I set a breakpoint on the while loop then set
+the hit counter to 49791. The last printed value was the 49791st value.
+
+FibDebug: Using the debugger it was clear that the loop was running one time too much. So increased the 1 in the while
+loop to 2 so it would run one less time. The answer is 610.
+
+Marker: While stepping through the program, I noticed that each print statement was printing. I realized while stepping
+through the program that there should have been else if statements on the sequential if statement. Without the else
+if statements each print statement would run. 
+
+I could not debug the last two programs.
+ 
